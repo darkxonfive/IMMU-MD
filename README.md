@@ -1,7 +1,7 @@
 # _Immu-multi-device_
 
 <p align="center">
-  <a href="https://github.com/immumdbot/IMMU-MDv2">
+  <a href="https://github.com/XRI007/IMMU-MD">
     <img alt="IMMU-MD docs" height="200" src="https://i.ibb.co/XM2ZzFY/IMG-20250622-WA0006.jpg">
   </a>
 </p>
