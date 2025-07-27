@@ -10,7 +10,7 @@
   
 <div align="center">
    
-<a href="https://immu-md-pair-7c30a68d6848.herokuapp.com/"><img align="center" src="https://i.imgur.com/dzPTA6u.png" alt="Scan QR" height="112" width="300" /></a><br>
+<a href="https://pair-immu-4314850c3795.herokuapp.com/"><img align="center" src="https://i.imgur.com/dzPTA6u.png" alt="Scan QR" height="112" width="300" /></a><br>
 
 </div>
 
@@ -19,10 +19,10 @@
 
 ## Deploy to Heroku ↓
 
-<a href="https://github.com/immumdbot/IMMU-MDv2/fork" target="blank"><img align="center" src="https://i.imgur.com/cxaSEWe.png" alt="Deploy bot" height="112" width="310" /></a>
+<a href="https://github.com/XRI007/IMMU-MD/fork" target="blank"><img align="center" src="https://i.imgur.com/cxaSEWe.png" alt="Deploy bot" height="112" width="310" /></a>
   <div>
 <br>
-<a href="https://dashboard.heroku.com/new?template=https://github.com/immumdbot/IMMU-MDv2" target="blank"><img align="center" src="https://i.imgur.com/6rs61MY.png" alt="Deploy bot" height="112" width="310" /></a>
+<a href="https://dashboard.heroku.com/new?template=https://github.com/XRI007/IMMU-MD" target="blank"><img align="center" src="https://i.imgur.com/6rs61MY.png" alt="Deploy bot" height="112" width="310" /></a>
   <div>
 <br>
 
