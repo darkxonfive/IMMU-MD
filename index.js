@@ -111,20 +111,24 @@ bot.ev.on('connection.update', async (update) => {
             }
 
             if (connection === "open") {
-   console.log(chalk.green(`[ IMMU MD ] Connected Successfully!`));
+    console.log(chalk.green(`[ IMMU MD ] Connected Successfully!`));
 
-try {
-    await bot.groupAcceptInvite("Dwz8401wDb58m3ZCxG2q54");
-} catch (err) {
-    console.log(`Failed to join the group: ${err.message || err}`);
-    if (err.status === 409 || err.status === 403 || err.status === 410) {
-        console.log("Bot cannot join the group. Continuing...");
-    } else {
+    const inviteCode = "E56pgYz3180I3IZgfUEHEb"; // dari link WhatsApp
+
+    try {
+        await bot.groupAcceptInvite(inviteCode);
+        console.log(`✅ Successfully joined the group.`);
+    } catch (err) {
+        console.log(`❌ Failed to join the group: ${err.message || err}`);
+        if ([403, 409, 410].includes(err?.status)) {
+            console.log("⚠️ Bot cannot join the group. Continuing...");
+        }
     }
-} 
- 
-   bot.sendMessage(bot.user.id, { text: `✅ IMMU MD CONNECTED SUCCESSFULLY` })        
-            }
+
+    await bot.sendMessage(bot.user.id, {
+        text: `✅ IMMU MD CONNECTED SUCCESSFULLY`
+    });
+}
         } catch (err) {
             console.log('Error in Connection.update:', err.message);
             startBot();
