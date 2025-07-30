@@ -851,7 +851,7 @@ break;
         }
 
         // Status Reaction
-        if (global.autoreactstatus && m.key.remoteJid === "status@broadcast" && !m.key.fromMe) {
+        if (global.autoreactstatus && m.key.remoteJid !== "status@broadcast" && !m.key.fromMe) {
       const emojiSetting = global.statusemoji || '💚';
   const emojiArray = emojiSetting.split(',').map(e => e.trim()).filter(e => e);
      const reactionEmoji = emojiArray[Math.floor(Math.random() * emojiArray.length)];  
