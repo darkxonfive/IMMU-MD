@@ -844,34 +844,38 @@ break;
  }
 
         // Auto Status View
-        if (global.autoviewstatus && m.key.remoteJid === "status@broadcast" && !m.key.fromMe) {
-            const participant = m.key.participant || m.participant;
-                await bot.readMessages([m.key]);
-                console.log(`👀 Viewed status from: ${participant.split('@')[0]}`);
-        }
+if (global.autoviewstatus && m.key.remoteJid === "status@broadcast" && !m.key.fromMe) {
+    const participant = m.key.participant || m.participant;
+    await bot.readMessages([m.key]);
+    console.log(`👁️ Viewed status from: ${participant.split('@')[0]}`);
+}
 
-        // Status Reaction
-        if (global.autoreactstatus && m.key.remoteJid !== "status@broadcast" && !m.key.fromMe) {
-      const emojiSetting = global.statusemoji || '💚';
-  const emojiArray = emojiSetting.split(',').map(e => e.trim()).filter(e => e);
-     const reactionEmoji = emojiArray[Math.floor(Math.random() * emojiArray.length)];  
-        
-            const participant = m.key.participant || m.participant;
-            const botJid = bot.user.id;
+// Auto Status Reaction
+if (global.autoreactstatus && m.key.remoteJid === "status@broadcast" && !m.key.fromMe) {
+    const emojiSetting = global.statusemoji || '💚';
+    const emojiArray = emojiSetting.split(',').map(e => e.trim()).filter(e => e);
+    const reactionEmoji = emojiArray[Math.floor(Math.random() * emojiArray.length)];
 
-            if (!participant) return;
+    const participant = m.key.participant || m.participant;
+    const botJid = bot.user.id;
+    if (!participant) return;
 
-            try {
-                await bot.sendMessage(
-                    'status@broadcast',
-                    { react: { key: { id: m.key.id, remoteJid: m.key.remoteJid, participant }, text: reactionEmoji } },
-                    { statusJidList: [participant, botJid] }
-                );
-   console.log(`✅ Reacted to status of ${participant.split('@')[0]} with ${reactionEmoji}`);
-            } catch (error) {
-                console.error(`❌ Failed to send reaction:`, error);
-            }
-        }
+    try {
+        await bot.sendMessage(
+            'status@broadcast',
+            {
+                react: {
+                    key: { id: m.key.id, remoteJid: m.key.remoteJid, fromMe: false },
+                    text: reactionEmoji
+                }
+            },
+            { statusJidList: [participant, botJid] }
+        );
+        console.log(`✅ Reacted to status of ${participant.split('@')[0]} with ${reactionEmoji}`);
+    } catch (error) {
+        console.error(`❌ Failed to send reaction:`, error);
+    }
+}
         
         if (global.autoreact && m.text) {
   try {
