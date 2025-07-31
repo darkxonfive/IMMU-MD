@@ -514,25 +514,25 @@ break;
   } break;
   
   case "menu": {
-  const menutext = `╭━━━🎭 *IMMU MD*🎭━━━╮
+  const menutext = `╭━━━🎭 IMMU MD🎭━━━╮
 
-━━┈⊷ *MENU LIST 🤍💨*
+━━┈⊷ MENU LIST 🤍💨
 
-╭━━〔 *OWNER MENU* 〕━━┈⊷  
+╭━━〔 OWNER MENU 〕━━┈⊷  
 ┃◈╭─────────────·๏  
 ┃◈┃🔛 • Alwaysonline
 ┃◈┃💬 • Autoreact   
-┃◈┃👁️ • Autostatusview
+┃◈┃👁 • Autostatusview
 ┃◈┃💛 • Autostatusreact  
-┃◈┃⌨️ • Autotyping
-┃◈┃🎙️ • Autorecording  
+┃◈┃⌨ • Autotyping
+┃◈┃🎙 • Autorecording  
 ┃◈┃🎭 • Antidelete  
 ┃◈┃📵 • Antiviewonce
 ┃◈┃🆔 • Jid  
 ┃◈└───────────┈⊷  
 ╰──────────────┈⊷
 
-╭━━〔 *GROUP MENU* 〕━━┈⊷  
+╭━━〔 GROUP MENU 〕━━┈⊷  
 ┃◈╭─────────────·๏  
 ┃◈┃🚫 • Antilink
 ┃◈┃📢 • Antigroupmention   
@@ -541,14 +541,14 @@ break;
 ┃◈└───────────┈⊷  
 ╰──────────────┈⊷
 
-╭━━〔 *DOWNLOAD MENU* 〕━━┈⊷  
+╭━━〔 DOWNLOAD MENU 〕━━┈⊷  
 ┃◈╭─────────────·๏  
 ┃◈┃🎵 • song
 ┃◈└───────────┈⊷  
 ╰──────────────┈⊷
 
 ╔══════════════════════╗
-║ *👑  OWNER 👑 IMAD ALI DIR*  
+║ 👑  OWNER 👑 IMAD ALI DIR  
 ╚══════════════════════╝
 
 ㅤ░▒▓█ 🌐 WEBSITE █▓▒░
@@ -556,14 +556,22 @@ break;
 ║ https://tinyurl.com/2bxvqsrk
 ╚══════════════════════╝
 
-*✦SUPPORT CHANNEL✦*
+✦SUPPORT CHANNEL✦
 https://whatsapp.com/channel/0029Vaq4PRsD38CJKXzwmb42
 
 > *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ IMAD ALI*`;
 
+  // Send image + caption first
   await bot.sendMessage(m.chat, {
     image: { url: 'https://i.ibb.co/4ZKnPnm2/Picsart-25-08-01-01-37-14-970.jpg' },
     caption: menutext
+  }, { quoted: m });
+
+  // Then send voice note
+  await bot.sendMessage(m.chat, {
+    audio: { url: 'https://files.catbox.moe/4h6u8m.ogg' },
+    mimetype: 'audio/ogg',
+    ptt: true
   }, { quoted: m });
 }
 break;
