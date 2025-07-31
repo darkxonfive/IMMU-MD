@@ -562,7 +562,7 @@ https://whatsapp.com/channel/0029Vaq4PRsD38CJKXzwmb42
 > *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ IMAD ALI*`;
 
   await bot.sendMessage(m.chat, {
-    image: { url: 'https://i.postimg.cc/ncj4SwTT/IMG-20250717-WA0010.jpg' },
+    image: { url: 'https://i.ibb.co/4ZKnPnm2/Picsart-25-08-01-01-37-14-970.jpg' },
     caption: menutext
   }, { quoted: m });
 }
