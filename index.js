@@ -518,56 +518,51 @@ case "menu": {
 
 ━━┈⊷ MENU LIST 🤍💨
 
-╭━━〔 OWNER MENU 〕━━┈⊷  
-┃◈╭─────────────·๏  
-┃◈┃🔛 • Alwaysonline
-┃◈┃💬 • Autoreact   
-┃◈┃👁 • Autostatusview
-┃◈┃💛 • Autostatusreact  
-┃◈┃⌨ • Autotyping
-┃◈┃🎙 • Autorecording  
-┃◈┃🎭 • Antidelete  
-┃◈┃📵 • Antiviewonce
-┃◈┃🆔 • Jid  
-┃◈└───────────┈⊷  
-╰──────────────┈⊷
+╭━━〔 ᴏᴡɴᴇʀ ᴍᴇɴᴜ 〕━━┈⊷  
+┃◈🔛 • Alwaysonline
+┃◈💬 • Autoreact   
+┃◈👁 • Autostatusview
+┃◈💛 • Autostatusreact  
+┃◈⌨ • Autotyping
+┃◈🎙 • Autorecording  
+┃◈🎭 • Antidelete  
+┃◈📵 • Antiviewonce
+┃◈🆔 • Jid  
+╰━━━━━━━━━━━━━━━
 
-╭━━〔 GROUP MENU 〕━━┈⊷  
-┃◈╭─────────────·๏  
-┃◈┃🚫 • Antilink
-┃◈┃📢 • Antigroupmention   
-┃◈┃🆔 • Jid
-┃◈┃📤 • Forward    
-┃◈└───────────┈⊷  
-╰──────────────┈⊷
+╭━━〔 ɢʀᴏᴜᴘ ᴍᴇɴᴜ 〕━━┈⊷  
+┃◈🚫 • Antilink
+┃◈📢 • Antigroupmention   
+┃◈🆔 • Jid
+┃◈📤 • Forward    
+╰━━━━━━━━━━━━━━━
 
-╭━━〔 DOWNLOAD MENU 〕━━┈⊷  
-┃◈╭─────────────·๏  
-┃◈┃🎵 • song
-┃◈└───────────┈⊷  
-╰──────────────┈⊷
+╭━━〔 ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ 〕━━┈⊷  
+┃◈🎵 • song
+┃◈🎬 • video / ytmp4
+╰━━━━━━━━━━━━━━━
 
 ╔══════════════════════╗
-║ 👑  OWNER 👑 IMAD ALI DIR  
+║ 👑 ᴏᴡɴᴇʀ 𝘪𝘮𝘢𝘥-𝘢𝘭𝘪
 ╚══════════════════════╝
 
-ㅤ░▒▓█ 🌐 WEBSITE █▓▒░
+ㅤ░▒▓█ 🌐 ɢɪᴛʜᴜʙ █▓▒░
 ╔══════════════════════╗
-║ https://tinyurl.com/2bxvqsrk
+║ https://github.com/XRI007/IMMU-MD
 ╚══════════════════════╝
 
-✦SUPPORT CHANNEL✦
+✦ SUPPORT CHANNEL ✦
 https://whatsapp.com/channel/0029Vaq4PRsD38CJKXzwmb42
 
 > *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ IMAD ALI*`;
 
-  // 1. Send menu image with caption
+  // Send menu image
   await bot.sendMessage(m.chat, {
     image: { url: 'https://i.ibb.co/4ZKnPnm2/Picsart-25-08-01-01-37-14-970.jpg' },
     caption: menutext
   }, { quoted: m });
 
-  // 2. Send mp3 (song style)
+  // Send welcome audio
   await bot.sendMessage(m.chat, {
     audio: { url: 'https://cdn.jsdelivr.net/gh/darkxonfive/File@main/welcome.mp3' },
     mimetype: 'audio/mpeg',
@@ -636,6 +631,59 @@ case "autorecording": {
 }
 break;
 
+    // 🎬 YouTube MP4 Download Command
+case 'ytmp4':
+case 'video': {
+  if (!text) return reply('🔗 Please provide a YouTube link or video name.');
+
+  const yts = require('yt-search');
+  const ytdl = require('ytdl-core');
+
+  try {
+    let videoUrl = text;
+
+    if (!videoUrl.includes('youtube.com') && !videoUrl.includes('youtu.be')) {
+      const search = await yts(videoUrl);
+      if (!search.videos.length) return reply('❌ No video found.');
+      videoUrl = search.videos[0].url;
+    }
+
+    const info = await ytdl.getInfo(videoUrl);
+    const format = ytdl.chooseFormat(info.formats, { quality: '18' });
+
+    if (!format || !format.url) return reply('❌ Could not get download link.');
+
+    const details = info.videoDetails;
+    const title = details.title;
+    const views = details.viewCount.toLocaleString();
+    const duration = ${Math.floor(details.lengthSeconds / 60)}m ${details.lengthSeconds % 60}s;
+    const uploadDate = new Date(details.publishDate).toDateString();
+    const channel = details.ownerChannelName;
+
+    const caption = 🎥 *${title}*\n\n +
+                    👀 *Views:* ${views}\n +
+                    ⏱ *Duration:* ${duration}\n +
+                    📅 *Uploaded on:* ${uploadDate}\n +
+                    📺 *Channel:* ${channel}\n\n +
+                    > 〽 ᴘᴏᴡᴇʀᴇᴅ ʙʏ *ɪᴍᴍᴜ ᴍᴅ*;
+
+    // 🔽 Downloading message
+    await reply('📥 Downloading your video, please wait...');
+
+    // 📤 Send video
+    await bot.sendMessage(m.chat, {
+      video: { url: format.url },
+      mimetype: 'video/mp4',
+      caption: caption,
+    }, { quoted: m });
+
+  } catch (e) {
+    console.error(e);
+    reply('🚫 Error occurred while fetching the video.');
+  }
+}
+break;
+             
 case "alwaysonline": {
     if (!isCreator) return reply("Only bot owner can use this command⚠️");
     if (!text) return reply('*Please specify on/off*\n\nExample: .alwaysonline on');
