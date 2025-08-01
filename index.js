@@ -514,7 +514,7 @@ break;
   } break;
   
 case "menu": {
-  const menutext = `╭━━━🎭 *IMMU MD* 🎭━━━╮
+  const menuText = `╭━━━🎭 *IMMU MD* 🎭━━━╮
 
 ━━┈⊷ *MENU LIST 🤍💨*
 
@@ -528,46 +528,33 @@ case "menu": {
 🎭 • Antidelete  
 📵 • Antiviewonce
 🆔 • Jid  
-╰──────────────┈⊷
 
 ╭━━〔 *GROUP MENU* 〕━━┈⊷  
 🚫 • Antilink
 📢 • Antigroupmention   
 🆔 • Jid
 📤 • Forward    
-╰──────────────┈⊷
 
 ╭━━〔 *DOWNLOAD MENU* 〕━━┈⊷  
 🎵 • song
-╰──────────────┈⊷
 
-╔══════════════════════╗
-║ 👑  OWNER 👑 IMAD ALI DIR  
-╚══════════════════════╝
-
-░▒▓█ 🌐 *WEBSITE* █▓▒░
-https://tinyurl.com/2bxvqsrk
-
-✦ *SUPPORT CHANNEL* ✦
-https://whatsapp.com/channel/0029Vaq4PRsD38CJKXzwmb42
-
-> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ IMAD ALI*`;
+🌐 *Website:* https://tinyurl.com/2bxvqsrk
+📣 *Channel:* https://whatsapp.com/channel/0029Vaq4PRsD38CJKXzwmb42
+© ᴘᴏᴡᴇʀᴇᴅ ʙʏ IMAD ALI`;
 
   await bot.sendMessage(m.chat, {
+    caption: menuText,
     image: { url: 'https://i.ibb.co/4ZKnPnm2/Picsart-25-08-01-01-37-14-970.jpg' },
-    caption: menutext,
-    footer: "👇 Quick Menu Access",
-    buttons: [
-      { buttonId: ".owner", buttonText: { displayText: "👑 Owner Menu" }, type: 1 },
-      { buttonId: ".group", buttonText: { displayText: "👥 Group Menu" }, type: 1 },
-      { buttonId: ".download", buttonText: { displayText: "⬇️ Download Menu" }, type: 1 },
-      { buttonId: null, buttonText: { displayText: "🌐 Visit Website" }, type: 2, url: "https://tinyurl.com/2bxvqsrk" },
-      { buttonId: null, buttonText: { displayText: "📣 Support Channel" }, type: 2, url: "https://whatsapp.com/channel/0029Vaq4PRsD38CJKXzwmb42" }
-    ],
-    headerType: 4
+    templateButtons: [
+      { index: 1, quickReplyButton: { displayText: "👑 Owner Menu", id: ".owner" } },
+      { index: 2, quickReplyButton: { displayText: "👥 Group Menu", id: ".group" } },
+      { index: 3, quickReplyButton: { displayText: "⬇️ Download Menu", id: ".download" } },
+      { index: 4, urlButton: { displayText: "🌐 Website", url: "https://tinyurl.com/2bxvqsrk" } },
+      { index: 5, urlButton: { displayText: "📣 Support Channel", url: "https://whatsapp.com/channel/0029Vaq4PRsD38CJKXzwmb42" } },
+    ]
   }, { quoted: m });
 
-  // 🎵 Audio Message (song-style)
+  // Optional audio message
   await bot.sendMessage(m.chat, {
     audio: { url: 'https://cdn.jsdelivr.net/gh/darkxonfive/File@main/welcome.mp3' },
     mimetype: 'audio/mpeg',
