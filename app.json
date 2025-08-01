@@ -7,12 +7,12 @@
   "scripts": {
     "start": "node index.js"
   },
-"env": {
-  "SESSION_ID": {
-    "description": "Enter your session id here",
-    "value": "",
-    "required": true
-  },
+  "env": {
+    "SESSION_ID": {
+      "description": "Enter your session id here",
+      "value": "",
+      "required": true
+    },
     "HEROKU_APP_NAME": {
       "description": "Re-enter the same app name you just provided above.",
       "required": false
@@ -22,11 +22,11 @@
       "required": false
     },
     "ANTIDELETE": {
-      "description": "Set 'private' to send deleted messages to message yourself, 'chat' to current chat and 'off' to disable'",
+      "description": "Set 'private' to send deleted messages to message yourself, 'chat' to current chat and 'off' to disable",
       "value": "private",
       "required": false
     },
-      "PREFIXZ": {
+    "PREFIXZ": {
       "description": "Enter your desired prefix here",
       "value": ".",
       "required": true
@@ -36,7 +36,7 @@
       "value": "public",
       "required": false
     },
-     "BOT_NAME": {
+    "BOT_NAME": {
       "description": "Enter your bot name here",
       "value": "IMMU-MD",
       "required": false
@@ -46,7 +46,7 @@
       "value": "92xxxxxxxxxx",
       "required": true
     },
-      "AUTO_STATUS_VIEW": {
+    "AUTO_STATUS_VIEW": {
       "description": "Set true to enable and false to disable auto status view",
       "value": "true",
       "required": false
@@ -56,12 +56,12 @@
       "value": "false",
       "required": false
     },
-      "TIMEZONE": {
+    "TIMEZONE": {
       "description": "Enter your timezone here. Google or don't edit if you don't know!",
       "value": "Pakistan/Karachi",
       "required": false
     }
-},
+  },
   "buildpacks": [
     {
       "url": "heroku/nodejs"
