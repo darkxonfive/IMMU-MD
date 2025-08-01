@@ -514,47 +514,60 @@ break;
   } break;
   
 case "menu": {
-  const menuText = `╭━━━🎭 *IMMU MD* 🎭━━━╮
+  const menutext = `╭━━━🎭 IMMU MD🎭━━━╮
 
-━━┈⊷ *MENU LIST 🤍💨*
+━━┈⊷ MENU LIST 🤍💨
 
-╭━━〔 *OWNER MENU* 〕━━┈⊷  
-🔛 • Alwaysonline
-💬 • Autoreact   
-👁 • Autostatusview
-💛 • Autostatusreact  
-⌨ • Autotyping
-🎙 • Autorecording  
-🎭 • Antidelete  
-📵 • Antiviewonce
-🆔 • Jid  
+╭━━〔 OWNER MENU 〕━━┈⊷  
+┃◈╭─────────────·๏  
+┃◈┃🔛 • Alwaysonline
+┃◈┃💬 • Autoreact   
+┃◈┃👁 • Autostatusview
+┃◈┃💛 • Autostatusreact  
+┃◈┃⌨ • Autotyping
+┃◈┃🎙 • Autorecording  
+┃◈┃🎭 • Antidelete  
+┃◈┃📵 • Antiviewonce
+┃◈┃🆔 • Jid  
+┃◈└───────────┈⊷  
+╰──────────────┈⊷
 
-╭━━〔 *GROUP MENU* 〕━━┈⊷  
-🚫 • Antilink
-📢 • Antigroupmention   
-🆔 • Jid
-📤 • Forward    
+╭━━〔 GROUP MENU 〕━━┈⊷  
+┃◈╭─────────────·๏  
+┃◈┃🚫 • Antilink
+┃◈┃📢 • Antigroupmention   
+┃◈┃🆔 • Jid
+┃◈┃📤 • Forward    
+┃◈└───────────┈⊷  
+╰──────────────┈⊷
 
-╭━━〔 *DOWNLOAD MENU* 〕━━┈⊷  
-🎵 • song
+╭━━〔 DOWNLOAD MENU 〕━━┈⊷  
+┃◈╭─────────────·๏  
+┃◈┃🎵 • song
+┃◈└───────────┈⊷  
+╰──────────────┈⊷
 
-🌐 *Website:* https://tinyurl.com/2bxvqsrk
-📣 *Channel:* https://whatsapp.com/channel/0029Vaq4PRsD38CJKXzwmb42
-© ᴘᴏᴡᴇʀᴇᴅ ʙʏ IMAD ALI`;
+╔══════════════════════╗
+║ 👑  OWNER 👑 IMAD ALI DIR  
+╚══════════════════════╝
 
+ㅤ░▒▓█ 🌐 WEBSITE █▓▒░
+╔══════════════════════╗
+║ https://tinyurl.com/2bxvqsrk
+╚══════════════════════╝
+
+✦SUPPORT CHANNEL✦
+https://whatsapp.com/channel/0029Vaq4PRsD38CJKXzwmb42
+
+> *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ IMAD ALI*`;
+
+  // 1. Send menu image with caption
   await bot.sendMessage(m.chat, {
-    caption: menuText,
     image: { url: 'https://i.ibb.co/4ZKnPnm2/Picsart-25-08-01-01-37-14-970.jpg' },
-    templateButtons: [
-      { index: 1, quickReplyButton: { displayText: "👑 Owner Menu", id: ".owner" } },
-      { index: 2, quickReplyButton: { displayText: "👥 Group Menu", id: ".group" } },
-      { index: 3, quickReplyButton: { displayText: "⬇️ Download Menu", id: ".download" } },
-      { index: 4, urlButton: { displayText: "🌐 Website", url: "https://tinyurl.com/2bxvqsrk" } },
-      { index: 5, urlButton: { displayText: "📣 Support Channel", url: "https://whatsapp.com/channel/0029Vaq4PRsD38CJKXzwmb42" } },
-    ]
+    caption: menutext
   }, { quoted: m });
 
-  // Optional audio message
+  // 2. Send mp3 (song style)
   await bot.sendMessage(m.chat, {
     audio: { url: 'https://cdn.jsdelivr.net/gh/darkxonfive/File@main/welcome.mp3' },
     mimetype: 'audio/mpeg',
@@ -562,7 +575,7 @@ case "menu": {
   }, { quoted: m });
 }
 break;
-
+             
 case "autoread": {
     if (!isCreator) return reply("Only bot owner can use this command⚠️");
     if (!text) return reply('*Please specify on/off*\n\nExample: .autoread on');
