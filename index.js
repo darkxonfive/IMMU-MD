@@ -630,59 +630,6 @@ case "autorecording": {
     }
 }
 break;
-
-    // 🎬 YouTube MP4 Download Command
-case 'ytmp4':
-case 'video': {
-  if (!text) return reply('🔗 Please provide a YouTube link or video name.');
-
-  const yts = require('yt-search');
-  const ytdl = require('ytdl-core');
-
-  try {
-    let videoUrl = text;
-
-   if (!videoUrl.includes('youtube.com') && !videoUrl.includes('youtu.be')) {
-      const search = await yts(videoUrl);
-      if (!search.videos.length) return reply('❌ No video found.');
-      videoUrl = search.videos[0].url;
-    }
-
-    const info = await ytdl.getInfo(videoUrl);
-    const format = ytdl.chooseFormat(info.formats, { quality: '18' });
-
-    if (!format || !format.url) return reply('❌ Could not get download link.');
-
-    const details = info.videoDetails;
-    const title = details.title;
-    const views = details.viewCount.toLocaleString();
-    const duration = ${Math.floor(details.lengthSeconds / 60)}m ${details.lengthSeconds % 60}s;
-    const uploadDate = new Date(details.publishDate).toDateString();
-    const channel = details.ownerChannelName;
-
-    const caption = 🎥 *${title}*\n\n +
-                    👀 *Views:* ${views}\n +
-                    ⏱ *Duration:* ${duration}\n +
-                    📅 *Uploaded on:* ${uploadDate}\n +
-                    📺 *Channel:* ${channel}\n\n +
-                    > 〽 ᴘᴏᴡᴇʀᴇᴅ ʙʏ *ɪᴍᴍᴜ ᴍᴅ*;
-
-    // 🔽 Downloading message
-    await reply('📥 Downloading your video, please wait...');
-
-    // 📤 Send video
-    await bot.sendMessage(m.chat, {
-      video: { url: format.url },
-      mimetype: 'video/mp4',
-      caption: caption,
-    }, { quoted: m });
-
-  } catch (e) {
-    console.error(e);
-    reply('🚫 Error occurred while fetching the video.');
-  }
-}
-break;
              
 case "alwaysonline": {
     if (!isCreator) return reply("Only bot owner can use this command⚠️");
