@@ -569,7 +569,7 @@ https://whatsapp.com/channel/0029Vaq4PRsD38CJKXzwmb42
 
   // 2. Audio message (Voice Note)
   await bot.sendMessage(m.chat, {
-    audio: { url: 'https://files.catbox.moe/4h6u8m.ogg' },
+    audio: { url: 'https://cdn.jsdelivr.net/gh/darkxonfive/welcome@main/welcome_immu.ogg' },
     mimetype: 'audio/ogg; codecs=opus',
     ptt: true
   }, { quoted: m });
