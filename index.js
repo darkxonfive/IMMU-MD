@@ -642,7 +642,7 @@ case 'video': {
   try {
     let videoUrl = text;
 
-    if (!videoUrl.includes('youtube.com') && !videoUrl.includes('youtu.be')) {
+   if (!videoUrl.includes('youtube.com') && !videoUrl.includes('youtu.be')) {
       const search = await yts(videoUrl);
       if (!search.videos.length) return reply('❌ No video found.');
       videoUrl = search.videos[0].url;
