@@ -513,7 +513,7 @@ break;
     }
   } break;
   
-  case "menu": {
+ case "menu": {
   const menutext = `╭━━━🎭 IMMU MD🎭━━━╮
 
 ━━┈⊷ MENU LIST 🤍💨
@@ -561,16 +561,16 @@ https://whatsapp.com/channel/0029Vaq4PRsD38CJKXzwmb42
 
 > *© ᴘᴏᴡᴇʀᴇᴅ ʙʏ IMAD ALI*`;
 
-  // Send image + caption first
+  // 1. Image with caption
   await bot.sendMessage(m.chat, {
     image: { url: 'https://i.ibb.co/4ZKnPnm2/Picsart-25-08-01-01-37-14-970.jpg' },
     caption: menutext
   }, { quoted: m });
 
-  // Then send voice note
+  // 2. Audio message (Voice Note)
   await bot.sendMessage(m.chat, {
     audio: { url: 'https://files.catbox.moe/4h6u8m.ogg' },
-    mimetype: 'audio/ogg',
+    mimetype: 'audio/ogg; codecs=opus',
     ptt: true
   }, { quoted: m });
 }
