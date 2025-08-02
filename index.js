@@ -846,27 +846,6 @@ break;
     }
  }
 
-case 's':
-case 'sticker': {
-  if (!m.quoted || !/image|video/.test(m.quoted.mtype))
-    return reply('📸 *Reply to an image or short video to make sticker.*');
-
-  reply('🛠️ *Making your sticker...*');
-
-  try {
-    const media = await m.quoted.download();
-    await bot.sendMessage(m.chat, {
-      sticker: media,
-      packname: "IMMU-MD",
-      author: "By Imad Ali"
-    }, { quoted: m });
-  } catch (e) {
-    console.error(e);
-    reply('❌ *Failed to create sticker.*');
-  }
-}
-break;
-         
         // Auto Status View
         if (global.autoviewstatus && m.key.remoteJid === "status@broadcast" && !m.key.fromMe) {
             const participant = m.key.participant || m.participant;
