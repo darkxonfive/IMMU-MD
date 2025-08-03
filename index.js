@@ -514,11 +514,11 @@ break;
   } break;
   
 case "menu": {
-  const menutext = `╭━━━🎭 IMMU MD🎭━━━╮
+  const menutext = `╭━━━🎭 *IMMU MD* 🎭━━━╮
 
 ━━┈⊷ MENU LIST 🤍💨
 
-╭━━〔 ᴏᴡɴᴇʀ ᴍᴇɴᴜ 〕━━┈⊷  
+╭━━〔 *ᴏᴡɴᴇʀ ᴍᴇɴᴜ* 〕━━┈⊷  
 ┃◈🔛 • Alwaysonline
 ┃◈💬 • Autoreact   
 ┃◈👁 • Autostatusview
@@ -530,23 +530,24 @@ case "menu": {
 ┃◈🆔 • Jid  
 ╰━━━━━━━━━━━━━━━
 
-╭━━〔 ɢʀᴏᴜᴘ ᴍᴇɴᴜ 〕━━┈⊷  
+╭━━〔 *ɢʀᴏᴜᴘ ᴍᴇɴᴜ* 〕━━┈⊷  
 ┃◈🚫 • Antilink
 ┃◈📢 • Antigroupmention   
 ┃◈🆔 • Jid
 ┃◈📤 • Forward    
 ╰━━━━━━━━━━━━━━━
 
-╭━━〔 ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ 〕━━┈⊷  
+╭━━〔 *ᴅᴏᴡɴʟᴏᴀᴅ ᴍᴇɴᴜ* 〕━━┈⊷  
 ┃◈🎵 • song
 ┃◈🎬 • video / ytmp4
+┃◈📥 • instagram / insta / ig
 ╰━━━━━━━━━━━━━━━
 
 ╔══════════════════════╗
-║ 👑 ᴏᴡɴᴇʀ 𝘪𝘮𝘢𝘥-𝘢𝘭𝘪
+║ 💻 ᴏᴡɴᴇʀ *𝘪𝘮𝘢𝘥-𝘢𝘭𝘪*
 ╚══════════════════════╝
 
-ㅤ░▒▓█ 🌐 ɢɪᴛʜᴜʙ █▓▒░
+ㅤ░▒▓█ *🌐 ɢɪᴛʜᴜʙ* █▓▒░
 ╔══════════════════════╗
 ║ https://github.com/XRI007/IMMU-MD
 ╚══════════════════════╝
@@ -846,6 +847,37 @@ break;
     }
  }
 
+case "instagram":
+case "insta":
+case "ig": {
+  if (!text) return reply('📸 *Please send an Instagram video URL.*\n\n_Example:_ `.instagram https://www.instagram.com/reel/xyz...`');
+
+  const url = text.trim();
+  if (!url.includes("instagram.com")) return reply("❌ *Invalid Instagram link.*");
+
+  try {
+    const { data } = await axios.get("https://instagram120.p.rapidapi.com/api/instagram/hls", {
+      params: { url },
+      headers: {
+        "x-rapidapi-host": "instagram120.p.rapidapi.com",
+        "x-rapidapi-key": "d675cc8066msh7e1a54b69af79a7p175a8ejsn95a22bb9c49e" // 👈 Replace with your key if needed
+      }
+    });
+
+    if (!data || !data.url) return reply("❌ *Failed to fetch video link.*");
+
+    await bot.sendMessage(m.chat, {
+      video: { url: data.url },
+      caption: "🎬 *Instagram Video* downloaded successfully.\n\n> Powered by IMMU MD 🔥"
+    }, { quoted: m });
+
+  } catch (err) {
+    console.error("❌ IG Download Error:", err);
+    reply("❌ *Failed to download video. Please check the link or try again later.*");
+  }
+}
+break;
+         
         // Auto Status View
         if (global.autoviewstatus && m.key.remoteJid === "status@broadcast" && !m.key.fromMe) {
             const participant = m.key.participant || m.participant;
