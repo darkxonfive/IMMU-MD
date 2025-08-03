@@ -848,6 +848,7 @@ break;
   }    
          
 case "instadl": case "ig": case "igdl':
+case "instadl": case "ig": case "igdl":
 {
     if (!text) return reply('*Please provide an Instagram post URL.*\n\nExample: `.instadl https://www.instagram.com/reel/xyz/`');
 
