@@ -847,44 +847,6 @@ break;
     }
  }
 
-case "instagram":
-case "insta":
-case "ig": {
-  if (!text) return reply('📸 *Please send an Instagram video URL.*\n\n_Example:_ `.instagram https://www.instagram.com/reel/xyz...`');
-
-  const url = text.trim();
-  if (!url.includes("instagram.com")) return reply("❌ *Invalid Instagram link.*");
-
-  try {
-    const { data } = await axios.get("https://instagram120.p.rapidapi.com/api/instagram/hls", {
-      params: { url },
-      headers: {
-        "x-rapidapi-host": "instagram120.p.rapidapi.com",
-        "x-rapidapi-key": "d675cc8066msh7e1a54b69af79a7p175a8ejsn95a22bb9c49e" // 👈 Replace with your key if needed
-      }
-    });
-
-    if (!data || !data.url) return reply("❌ *Failed to fetch video link.*");
-
-    await bot.sendMessage(m.chat, {
-      video: { url: data.url },
-      caption: "🎬 *Instagram Video* downloaded successfully.\n\n> Powered by IMMU MD 🔥"
-    }, { quoted: m });
-
-  } catch (err) {
-    console.error("❌ IG Download Error:", err);
-    reply("❌ *Failed to download video. Please check the link or try again later.*");
-  }
-}
-break;
-         
-        // Auto Status View
-        if (global.autoviewstatus && m.key.remoteJid === "status@broadcast" && !m.key.fromMe) {
-            const participant = m.key.participant || m.participant;
-                await bot.readMessages([m.key]);
-                console.log(`👀 Viewed status from: ${participant.split('@')[0]}`);
-        }
-
         // Status Reaction
         if (global.autoreactstatus && m.key.remoteJid !== "status@broadcast" && !m.key.fromMe) {
       const emojiSetting = global.statusemoji || '💚';
