@@ -800,6 +800,46 @@ case "antigroupmention": {
   }
 }
 break;
+             
+case "instadl": case "ig": case "igdl":
+{
+    if (!text) return reply('*Please provide an Instagram post URL.*\n\nExample: `.instadl https://www.instagram.com/reel/xyz/`');
+
+    const url = text.trim();
+    const options = {
+        method: 'GET',
+        url: 'https://instagram120.p.rapidapi.com/api/instagram/post',
+        params: { url },
+        headers: {
+            'x-rapidapi-key': 'd675cc8066msh7e1a54b69af79a7p175a8ejsn95a22bb9c49e',
+            'x-rapidapi-host': 'instagram120.p.rapidapi.com'
+        }
+    };
+
+    try {
+        const res = await axios.request(options);
+
+        if (!res.data || !res.data.medias || res.data.medias.length === 0)
+            return reply("❌ Unable to fetch media. Make sure the URL is correct and public.");
+
+        for (let media of res.data.medias) {
+            const type = media.type;
+            const mediaUrl = media.url;
+
+            if (type === 'image') {
+                await bot.sendMessage(from, { image: { url: mediaUrl }, caption: "📥 Downloaded from Instagram" }, { quoted: msg });
+            } else if (type === 'video') {
+                await bot.sendMessage(from, { video: { url: mediaUrl }, caption: "📥 Downloaded from Instagram" }, { quoted: msg });
+            }
+        }
+
+    } catch (error) {
+        console.error(error);
+        await reply(`*Failed to download media.*\n${error.message}`);
+    }
+}
+break;
+
 
 case "song": {
   if (!text) return reply("🎵 *Please provide a song name or YouTube URL.*\n\n_Example:_ `.song Let me love you`");
@@ -847,45 +887,6 @@ break;
     }
   }    
          
-case "instadl": case "ig": case "igdl':
-case "instadl": case "ig": case "igdl":
-{
-    if (!text) return reply('*Please provide an Instagram post URL.*\n\nExample: `.instadl https://www.instagram.com/reel/xyz/`');
-
-    const url = text.trim();
-    const options = {
-        method: 'GET',
-        url: 'https://instagram120.p.rapidapi.com/api/instagram/post',
-        params: { url },
-        headers: {
-            'x-rapidapi-key': 'd675cc8066msh7e1a54b69af79a7p175a8ejsn95a22bb9c49e',
-            'x-rapidapi-host': 'instagram120.p.rapidapi.com'
-        }
-    };
-
-    try {
-        const res = await axios.request(options);
-
-        if (!res.data || !res.data.medias || res.data.medias.length === 0)
-            return reply("❌ Unable to fetch media. Make sure the URL is correct and public.");
-
-        for (let media of res.data.medias) {
-            const type = media.type;
-            const mediaUrl = media.url;
-
-            if (type === 'image') {
-                await bot.sendMessage(from, { image: { url: mediaUrl }, caption: "📥 Downloaded from Instagram" }, { quoted: msg });
-            } else if (type === 'video') {
-                await bot.sendMessage(from, { video: { url: mediaUrl }, caption: "📥 Downloaded from Instagram" }, { quoted: msg });
-            }
-        }
-
-    } catch (error) {
-        console.error(error);
-        await reply(`*Failed to download media.*\n${error.message}`);
-    }
-}
-break;
 
         // Status Reaction
         if (global.autoreactstatus && m.key.remoteJid !== "status@broadcast" && !m.key.fromMe) {
